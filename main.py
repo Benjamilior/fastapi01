@@ -7,6 +7,7 @@ from models.models import Movie as MovieModel
 from fastapi.encoders import jsonable_encoder
 from fastapi import APIRouter
 from routers.movie import routmovie
+import os
 class Movie(BaseModel):
     id: Optional[int] = None
     tittle: str
@@ -48,3 +49,7 @@ app.include_router(routmovie)
     
 #     return filtered_movies
 
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
